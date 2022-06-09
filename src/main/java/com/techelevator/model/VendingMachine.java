@@ -1,15 +1,16 @@
-package capstone;
+package com.techelevator.model;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Scanner;
 
 public class VendingMachine {
 
     private int change; //change back to customer
     private int money;  //money that customer has to use
-    private String inventory;
+//    private List<>
     private int balance = 0;    //balance in vending machine
     private int capacity = 5;
     private String menu = "";
@@ -29,9 +30,9 @@ public class VendingMachine {
         return money;
     }
 
-    private String getInventory() {
-        return inventory;
-    }
+//    private List getInventory() {
+////        return Inventory;
+//    }
 
     private int getBalance() {
         return balance;
