@@ -35,6 +35,7 @@ public class VendingMachine {
     }
 
     public static int getItem(){
+//        Inventory slotLocation = Inventory.getInv().keySet();
         try (Scanner userInput = new Scanner(System.in)) {
 
             for (Map.Entry entry : Inventory.getInv().entrySet()) {
@@ -43,7 +44,7 @@ public class VendingMachine {
             System.out.println("What would you like? (A1,B3,etc.)");
             String inPut = userInput.nextLine();
             for (String entry : Inventory.getInv().keySet()) {
-                if (entry.containsKey(inPut)) {
+                if (entry.equals(inPut)) {
                     if (balance >= Inventory.getItemCost()) {
                         balance -= Inventory.getItemCost();
                         //System.out.println(Inventory.getItemMsg());

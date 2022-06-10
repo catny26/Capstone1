@@ -8,7 +8,7 @@ public class Candy extends Inventory {
 
     private String itemMsg;
 
-    public Candy(String itemName, String itemCost) throws FileNotFoundException {
+    public Candy(String itemName, Double itemCost) throws FileNotFoundException {
         super(itemName, itemCost);
     }
 
