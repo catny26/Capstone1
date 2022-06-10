@@ -31,7 +31,7 @@ public class Inventory {
     }
 
 
-    public Map<String, Inventory> getInv() throws FileNotFoundException {
+    public static Map<String, Inventory> getInv() throws FileNotFoundException {
         File csv = new File("src/test/resources/inventoryCsv");
         Map<String, Inventory> itemMap = new TreeMap<>();
         Scanner doc = new Scanner(csv);

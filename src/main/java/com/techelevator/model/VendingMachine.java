@@ -12,17 +12,18 @@ public class VendingMachine {
     private int change; //change back to customer
     private int money;  //money that customer has to use
 //    private List<Inventory> inv = new ArrayList<>();
-    private int balance = 0;    //balance in vending machine
+    private static int balance = 0;    //balance in vending machine
     private int capacity = 5;
     private String menu = "";
     private String log;     //log of every action taken and documented
 
 
-    public VendingMachine(String menu) {
+    public VendingMachine(String menu, int balance) {
         this.menu = menu;
+        this.balance = balance;
     }
 
-    private int getChange() {
+    public static int getChange() {
         return balance;
     }
 
@@ -35,7 +36,7 @@ public class VendingMachine {
 ////        return Inventory;
 //    }
 
-    private int getBalance() {
+    public int getBalance() {
         return balance;
     }
 
