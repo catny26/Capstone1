@@ -18,12 +18,12 @@ public class Test {
             String[] products = line.split("\\|");
             if (products[3].equals("Chip")) {
                 itemMap.put(products[0], new Chip(products[1], (products[2])));
-//            } else if (products[3].equals("Drink")) {
-//                itemMap.put(products[0], new Drink(products[1], Double.parseDouble(products[2])));
-//            } else if (products[3].equals("Candy")) {
-//                itemMap.put(products[0], new Candy(products[1], Double.parseDouble(products[2])));
-//            } else {
-//                itemMap.put(products[0], new Candy(products[1], Double.parseDouble(products[2])));
+            } else if (products[3].equals("Drink")) {
+                itemMap.put(products[0], new Drink(products[1], (products[2])));
+            } else if (products[3].equals("Candy")) {
+                itemMap.put(products[0], new Candy(products[1], (products[2])));
+            } else {
+                itemMap.put(products[0], new Candy(products[1], (products[2])));
             }
         }
             for (Map.Entry<String, Inventory> entry : itemMap.entrySet()) {

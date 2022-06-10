@@ -82,12 +82,7 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "Inventory{" +
-                "productCode='" + productCode + '\'' +
-                ", itemCost='" + itemCost + '\'' +
-                ", csv=" + csv +
-                ", itemName='" + itemName + '\'' +
-                '}';
+        return "" + itemName + " | " +  itemCost;
     }
 }
 
