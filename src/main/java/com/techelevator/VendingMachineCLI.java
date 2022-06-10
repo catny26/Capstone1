@@ -1,8 +1,12 @@
 package com.techelevator;
 
+import com.techelevator.model.Inventory;
 import com.techelevator.model.VendingMachine;
 import com.techelevator.view.Menu;
 import com.techelevator.view.PurchaseMenu;
+
+import java.io.FileNotFoundException;
+import java.util.Map;
 
 public class VendingMachineCLI {
 
@@ -27,6 +31,14 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
+				try {
+
+					for (Map.Entry entry : Inventory.getInv().entrySet()) {
+						System.out.println(entry);
+					}
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 				purchaseMenu.run();
@@ -43,5 +55,6 @@ public class VendingMachineCLI {
 			VendingMachineCLI cli = new VendingMachineCLI(menu);
 			cli.run();
 		}
+
 	}
 

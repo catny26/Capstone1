@@ -1,5 +1,7 @@
 package com.techelevator.model;
 
+import com.techelevator.view.Menu;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
@@ -9,7 +11,7 @@ public class Inventory {
 
     private Map<String, Array> inv;
     private String productCode;
-    private String itemCost;
+    private static String itemCost;
     private Scanner csv;
     private String itemName;
 
@@ -23,6 +25,10 @@ public class Inventory {
     public Inventory(Map<String, Array> inv, Scanner csv) {
         this.inv = new TreeMap<>();
         this.csv = csv;
+    }
+
+    public  String getItemMsg() {
+        return null;
     }
 
 
@@ -48,14 +54,13 @@ public class Inventory {
             } else {
                 itemMap.put(products[0], new Candy(products[1], (products[2])));
             }
-
-
         }
         return itemMap;
     }
 
-        public String getItemCost () {
-            return itemCost;
+        public static Double getItemCost() {
+        Double cost = Double.parseDouble(itemCost);
+            return cost;
 
         }
         public String getProductCode () {
