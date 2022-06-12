@@ -1,7 +1,8 @@
 package com.techelevator.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -42,6 +43,7 @@ public class VendingMachine {
 
     public Item purchase(String slotID) throws SoldoutException, InsufficientFundsException, UnavailableException {
         //Check if inventory.contains key
+<<<<<<< HEAD
         if (inventory.containsKey(slotID)) {
             //if above equals false, throw exception
             Item selection = inventory.get(slotID);
@@ -56,6 +58,14 @@ public class VendingMachine {
         }
         else {
             throw new UnavailableException("Invalid Entry");
+=======
+        //if above equals false, throw exception
+        Item selection = inventory.get(slotID);
+        //check user's balance to see if it is >= product cost
+        //if false, throw exception
+        if (selection.getCount() <= 0) {
+            throw new SoldoutException("This item is sold out!");
+>>>>>>> d970e4962573e9ceb128afeeca3f0504822ab7b7
         }
 
 
@@ -63,6 +73,7 @@ public class VendingMachine {
         }
 
 
+<<<<<<< HEAD
         public Map<String, Item> loadInventory () throws FileNotFoundException {
             File csv = new File("src/test/resources/inventoryCsv");
             Map<String, Item> itemMap = new TreeMap<>();
@@ -80,9 +91,29 @@ public class VendingMachine {
                 } else if (products[3].equals("Gum")) {
                     itemMap.put(products[0], new Gum(products[1], Double.parseDouble(products[2])));
                 }
+=======
+        while (doc.hasNextLine()) {
+            String line = doc.nextLine();
+            String[] products = line.split("\\|");
+            if (products[3].equals("Chip")) {
+                itemMap.put(products[0], new Chip(products[1], Double.parseDouble(products[2])));
+            } else if (products[3].equals("Drink")) {
+                itemMap.put(products[0], new Drink(products[1], Double.parseDouble(products[2])));
+            } else if (products[3].equals("Candy")) {
+                itemMap.put(products[0], new Candy(products[1], Double.parseDouble(products[2])));
+            } else if (products[3].equals("Gum")) {
+                itemMap.put(products[0], new Gum(products[1], Double.parseDouble(products[2])));
+>>>>>>> d970e4962573e9ceb128afeeca3f0504822ab7b7
             }
             return itemMap;
         }
+<<<<<<< HEAD
+=======
+        return itemMap;
+
+
+    }
+>>>>>>> d970e4962573e9ceb128afeeca3f0504822ab7b7
 
 //(line.split)
         //String[] parts = line.split("\\|");
@@ -94,4 +125,32 @@ public class VendingMachine {
         //
 
 
+<<<<<<< HEAD
     }
+=======
+    //(vending machine logs all transactions, each purchase must generate a line in a file called Log.txt)
+
+
+    public static void log(File file, String itemMsg) {
+        //(date/time formatting)
+        LocalDateTime presentDateTime = LocalDateTime.now();
+        String date = presentDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Error!");
+            }
+
+            try (PrintWriter writer = new PrintWriter(new FileOutputStream(file, true))) {
+                writer.print(itemMsg);
+            } catch (FileNotFoundException e) {
+                System.out.println(e);
+            }
+
+        }
+
+    }
+}
+>>>>>>> d970e4962573e9ceb128afeeca3f0504822ab7b7

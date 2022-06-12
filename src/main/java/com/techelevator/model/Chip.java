@@ -12,6 +12,6 @@ public class Chip extends Item {
 
 
     public String getItemMsg() {
-        return itemMsg;
+        return "\"Crunch Crunch, Yum!\"";
     }
 }

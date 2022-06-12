@@ -12,6 +12,6 @@ public class Gum extends Item {
 
 
     public String getItemMsg() {
-        return itemMsg;
+        return "Chew Chew, Yum!";
     }
 }
