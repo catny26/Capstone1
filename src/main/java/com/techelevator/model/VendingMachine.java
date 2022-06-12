@@ -40,52 +40,58 @@ public class VendingMachine {
         return inventory;
     }
 
-    public Item purchase(String slotID) throws SoldoutException {
+    public Item purchase(String slotID) throws SoldoutException, InsufficientFundsException, UnavailableException {
         //Check if inventory.contains key
-        //if above equals false, throw exception
-        Item selection = inventory.get(slotID);
-        //check user's balance to see if it is >= product cost
-        //if false, throw exception
-        if (selection.getCount() <= 0){
-            throw new SoldoutException("This item is sold out!");
+        if (inventory.containsKey(slotID)) {
+            //if above equals false, throw exception
+            Item selection = inventory.get(slotID);
+            if (selection.getItemCost() > getBalance()) {
+                throw new InsufficientFundsException("Insufficient Funds!");
+                //check user's balance to see if it is >= product cost
+                //if false, throw exception
+                if (selection.getCount() <= 0) {
+                    throw new SoldoutException("This item is sold out!");
+                }
+            }
+        }
+        else {
+            throw new UnavailableException("Invalid Entry");
         }
 
 
-        return selection;
-    }
-
-
-    public Map<String, Item> loadInventory() throws FileNotFoundException {
-        File csv = new File("src/test/resources/inventoryCsv");
-        Map<String, Item> itemMap = new TreeMap<>();
-        Scanner doc = new Scanner(csv);
-
-        while (doc.hasNextLine()) {
-            String line = doc.nextLine();
-            String[] products = line.split("\\|");
-            if (products[3].equals("Chip")) {
-                itemMap.put(products[0], new Chip(products[1], Double.parseDouble(products[2])));
-            }
-            else if (products[3].equals("Drink")) {
-                itemMap.put(products[0], new Drink(products[1], Double.parseDouble(products[2])));
-            } else if (products[3].equals("Candy")) {
-                itemMap.put(products[0], new Candy(products[1], Double.parseDouble(products[2])));
-            } else if(products[3].equals("Gum")){
-                itemMap.put(products[0], new Gum(products[1], Double.parseDouble(products[2])));
-            }
+            return selection;
         }
-        return itemMap;
-    }
+
+
+        public Map<String, Item> loadInventory () throws FileNotFoundException {
+            File csv = new File("src/test/resources/inventoryCsv");
+            Map<String, Item> itemMap = new TreeMap<>();
+            Scanner doc = new Scanner(csv);
+
+            while (doc.hasNextLine()) {
+                String line = doc.nextLine();
+                String[] products = line.split("\\|");
+                if (products[3].equals("Chip")) {
+                    itemMap.put(products[0], new Chip(products[1], Double.parseDouble(products[2])));
+                } else if (products[3].equals("Drink")) {
+                    itemMap.put(products[0], new Drink(products[1], Double.parseDouble(products[2])));
+                } else if (products[3].equals("Candy")) {
+                    itemMap.put(products[0], new Candy(products[1], Double.parseDouble(products[2])));
+                } else if (products[3].equals("Gum")) {
+                    itemMap.put(products[0], new Gum(products[1], Double.parseDouble(products[2])));
+                }
+            }
+            return itemMap;
+        }
 
 //(line.split)
-    //String[] parts = line.split("\\|");
-    //for(String part : parts) {
-    //  soutprintln(part)
-    //}
+        //String[] parts = line.split("\\|");
+        //for(String part : parts) {
+        //  soutprintln(part)
+        //}
 
-    //Finish Transaction: give change back
-    //
+        //Finish Transaction: give change back
+        //
 
 
-
-}
+    }

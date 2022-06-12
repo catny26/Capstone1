@@ -57,11 +57,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "itemCost=" + itemCost +
-                ", itemName='" + itemName + '\'' +
-                ", count=" + count +
-                '}';
+        return " " + itemName + " | " + itemCost + " | " + count + " Remaining";
     }
 }
 

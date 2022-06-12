@@ -1,8 +1,6 @@
 package com.techelevator.view;
 
-import com.techelevator.model.Item;
-import com.techelevator.model.SoldoutException;
-import com.techelevator.model.VendingMachine;
+import com.techelevator.model.*;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
@@ -71,7 +69,7 @@ public class PurchaseMenu {
         Item purchased = null;
         try {
             purchased = vnd.purchase(inPut);
-        } catch (SoldoutException e) {
+        } catch (SoldoutException | InsufficientFundsException | UnavailableException e) {
             System.out.println(e.getMessage());
         }
         System.out.println(purchased.getItemMsg());
