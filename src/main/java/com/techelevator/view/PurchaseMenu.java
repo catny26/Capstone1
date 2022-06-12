@@ -42,11 +42,11 @@ public class PurchaseMenu {
             if (choice.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
                 // display money amount
                 vnd.getMoney();
-                System.out.println("Current Balance: " + (double) vnd.getBalance() / 100);
+                System.out.println("Current Balance: $ " + (double) vnd.getBalance() / 100);
             } else if (choice.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)) {
                 purchaseItem();
             } else if (choice.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTION)) {
-                System.out.println("Your change is: " + (double) vnd.getChange() / 100);
+                System.out.println("Your change is: $ " + (double) vnd.getChange() / 100);
                 break;
                 //back to MainMenu
             }

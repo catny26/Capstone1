@@ -41,7 +41,7 @@ public class VendingMachineCLI {
 				// do purchase
 				purchaseMenu.run();
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
-				System.out.println("Your change is: " + vendingMachine.getChange());
+				System.out.println("Your change is: $ " + vendingMachine.getChange());
 				System.exit(1);
 				//exit program
 			}

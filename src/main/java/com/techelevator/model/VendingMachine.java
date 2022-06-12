@@ -1,7 +1,8 @@
 package com.techelevator.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -46,7 +47,7 @@ public class VendingMachine {
         Item selection = inventory.get(slotID);
         //check user's balance to see if it is >= product cost
         //if false, throw exception
-        if (selection.getCount() <= 0){
+        if (selection.getCount() <= 0) {
             throw new SoldoutException("This item is sold out!");
         }
 
@@ -65,16 +66,17 @@ public class VendingMachine {
             String[] products = line.split("\\|");
             if (products[3].equals("Chip")) {
                 itemMap.put(products[0], new Chip(products[1], Double.parseDouble(products[2])));
-            }
-            else if (products[3].equals("Drink")) {
+            } else if (products[3].equals("Drink")) {
                 itemMap.put(products[0], new Drink(products[1], Double.parseDouble(products[2])));
             } else if (products[3].equals("Candy")) {
                 itemMap.put(products[0], new Candy(products[1], Double.parseDouble(products[2])));
-            } else if(products[3].equals("Gum")){
+            } else if (products[3].equals("Gum")) {
                 itemMap.put(products[0], new Gum(products[1], Double.parseDouble(products[2])));
             }
         }
         return itemMap;
+
+
     }
 
 //(line.split)
@@ -87,5 +89,28 @@ public class VendingMachine {
     //
 
 
+    //(vending machine logs all transactions, each purchase must generate a line in a file called Log.txt)
 
+
+    public static void log(File file, String itemMsg) {
+        //(date/time formatting)
+        LocalDateTime presentDateTime = LocalDateTime.now();
+        String date = presentDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Error!");
+            }
+
+            try (PrintWriter writer = new PrintWriter(new FileOutputStream(file, true))) {
+                writer.print(itemMsg);
+            } catch (FileNotFoundException e) {
+                System.out.println(e);
+            }
+
+        }
+
+    }
 }
