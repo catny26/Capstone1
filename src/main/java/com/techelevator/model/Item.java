@@ -24,11 +24,14 @@ public class Item {
 
 
     public Double getItemCost() {
-//        itemCost = Double.parseDouble(String.valueOf(itemCost));
         return itemCost;
 
     }
+    public int getItem(){
 
+        count -= 1;
+        return count;
+    }
 
     public String getItemName() {
         return itemName;
@@ -57,11 +60,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "itemCost=" + itemCost +
-                ", itemName='" + itemName + '\'' +
-                ", count=" + count +
-                '}';
+        return " " + itemName + " | " + itemCost + " | " + count + " Remaining";
     }
 }
 

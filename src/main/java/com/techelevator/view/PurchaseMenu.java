@@ -1,8 +1,6 @@
 package com.techelevator.view;
 
-import com.techelevator.model.Item;
-import com.techelevator.model.SoldoutException;
-import com.techelevator.model.VendingMachine;
+import com.techelevator.model.*;
 
 import java.io.FileNotFoundException;
 import java.util.Map;
@@ -21,7 +19,6 @@ public class PurchaseMenu {
     private static final String PURCHASE_MENU_OPTION_FINISH_TRANSACTION = "Finish Transaction";
     private static final String[] PURCHASE_MENU_OPTIONS = {PURCHASE_MENU_OPTION_FEED_MONEY, PURCHASE_MENU_OPTION_SELECT_PRODUCT, PURCHASE_MENU_OPTION_FINISH_TRANSACTION};
     public VendingMachine vnd;
-
     public PurchaseMenu(Menu menu) {
         this.menu = menu;
     }
@@ -71,10 +68,12 @@ public class PurchaseMenu {
         Item purchased = null;
         try {
             purchased = vnd.purchase(inPut);
-        } catch (SoldoutException e) {
+            System.out.println(purchased.getItemMsg());
+            System.out.println("Current Balance: " + (double) vnd.getBalance() / 100);
+
+        } catch (SoldoutException | InsufficientFundsException | UnavailableException e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(purchased.getItemMsg());
 
 
     }

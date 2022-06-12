@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import com.techelevator.model.Item;
+import com.techelevator.model.Log;
 import com.techelevator.model.VendingMachine;
 import com.techelevator.view.Menu;
 import com.techelevator.view.PurchaseMenu;
@@ -19,6 +20,7 @@ public class VendingMachineCLI {
 	private PurchaseMenu purchaseMenu;
 	private VendingMachine vendingMachine;
 	private Item inv;
+	private Log log;
 //	private static Menu purchaseMenu;
 
 	public VendingMachineCLI(Menu menu, VendingMachine vendingMachine) throws FileNotFoundException {
@@ -41,7 +43,7 @@ public class VendingMachineCLI {
 				// do purchase
 				purchaseMenu.run();
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
-				System.out.println("Your change is: " + vendingMachine.getChange());
+				System.out.println("Thank You!");
 				System.exit(1);
 				//exit program
 			}

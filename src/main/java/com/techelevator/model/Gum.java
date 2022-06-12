@@ -12,6 +12,9 @@ public class Gum extends Item {
 
 
     public String getItemMsg() {
+
+        itemMsg = "chew chew yum";
+
         return itemMsg;
     }
 }

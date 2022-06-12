@@ -12,6 +12,9 @@ public class Drink extends Item {
 
 
     public String getItemMsg() {
+        itemMsg = "glug glug yum!";
+
+
         return itemMsg;
     }
 }
