@@ -3,7 +3,7 @@ package com.techelevator.model;
 
 import java.io.FileNotFoundException;
 
-public class Candy extends Inventory {
+public class Candy extends Item {
 
 
     private String itemMsg;

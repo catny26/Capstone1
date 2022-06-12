@@ -1,6 +1,6 @@
 package com.techelevator;
 
-import com.techelevator.model.Inventory;
+import com.techelevator.model.Item;
 import com.techelevator.model.VendingMachine;
 import com.techelevator.view.Menu;
 import com.techelevator.view.PurchaseMenu;
@@ -18,11 +18,14 @@ public class VendingMachineCLI {
 	private Menu menu;
 	private PurchaseMenu purchaseMenu;
 	private VendingMachine vendingMachine;
+	private Item inv;
 //	private static Menu purchaseMenu;
 
-	public VendingMachineCLI(Menu menu) {
+	public VendingMachineCLI(Menu menu, VendingMachine vendingMachine) throws FileNotFoundException {
 		this.menu = menu;
-		purchaseMenu = new PurchaseMenu(menu);
+		purchaseMenu = new PurchaseMenu(menu,vendingMachine);
+		this.inv = new Item();
+		this.vendingMachine = vendingMachine;
 	}
 
 	public void run() {
@@ -30,29 +33,25 @@ public class VendingMachineCLI {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-				// display vending machine items
-				try {
 
-					for (Map.Entry entry : Inventory.getInv().entrySet()) {
-						System.out.println(entry);
-					}
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
+				for (Map.Entry<String, Item> entry : vendingMachine.getInventory().entrySet()) {
+					System.out.println(entry);
 				}
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 				purchaseMenu.run();
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
-				System.out.println("Your change is: " + VendingMachine.getChange());
+				System.out.println("Your change is: " + vendingMachine.getChange());
 				System.exit(1);
 				//exit program
 			}
 		}
 	}
 
-		public static void main (String[] args) {
+		public static void main (String[] args) throws FileNotFoundException {
 			Menu menu = new Menu(System.in, System.out);
-			VendingMachineCLI cli = new VendingMachineCLI(menu);
+			VendingMachine vendingMachine = new VendingMachine();
+			VendingMachineCLI cli = new VendingMachineCLI(menu, vendingMachine);
 			cli.run();
 		}
 

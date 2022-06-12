@@ -1,13 +1,13 @@
-package com.techelevator.model;
+//package com.techelevator.model;
+//
+//import java.io.File;
+//import java.io.FileNotFoundException;
+//import java.util.Map;
+//import java.util.Scanner;
+//import java.util.TreeMap;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
-
-public class Test {
-
+//public class Test {
+//
 //
 //    public static void main(String[] args) throws FileNotFoundException {
 //        File csv = new File("src/test/resources/inventoryCsv");
@@ -26,12 +26,12 @@ public class Test {
 //                itemMap.put(products[0], new Candy(products[1], (products[2])));
 //            }
 //        }
-//            for (Map.Entry<String, Inventory> entry : itemMap.entrySet()) {
-//                System.out.println(entry);
-//            }
+//        for (Map.Entry<String, Inventory> entry : itemMap.entrySet()) {
+//            System.out.println(entry);
+//        }
 //        System.out.println(itemMap.get("A1"));
-
-
-
-    }
-
+//
+//
+//    }
+//
+//}

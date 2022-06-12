@@ -3,7 +3,7 @@ package com.techelevator.model;
 
 import java.io.FileNotFoundException;
 
-public class Chip extends Inventory{
+public class Chip extends Item {
     public Chip(String itemName, Double itemCost) throws FileNotFoundException {
         super(itemName, itemCost);
     }
